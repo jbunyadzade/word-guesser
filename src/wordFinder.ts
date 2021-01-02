@@ -7,7 +7,7 @@ let found: string[] = [];
 
 export function printSubWords (word: string) {
     found = [];
-    const sortedWord = word.split('').sort().join('');
+    const sortedWord = word.toLowerCase().split('').sort().join('');
     for (const key in dict) {
         const regex = new RegExp(getRegex(key));
         if (sortedWord.match(regex)) {
