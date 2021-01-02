@@ -3,18 +3,19 @@
     let searchWord: string = "";
     let words: string[] = [];
     
-    function searchWords() {
-        console.log(searchWord);
+    function searchWords(e) {
+        e.preventDefault();
         words = printSubWords(searchWord);
-        console.log(words);
     }
     
 </script>
 
 <main>
     <h1>Введите слово</h1>
-    <input type="text" bind:value={searchWord}>
-    <button on:click={searchWords}>Искать</button>
+    <form on:submit={searchWords}>
+        <input type="text" bind:value={searchWord}>
+        <button type="submit">Искать</button>
+    </form>
     <ul>
         {#each words as word}
             <li>{word}</li>
@@ -45,7 +46,15 @@
 
     ul {
         display: grid;
-        grid-template-columns: repeat(fit-content, 200px);
+        grid-template-columns: repeat(auto-fill, minmax(10em, auto));
+        gap: 5px;
+        justify-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style-type: none;
     }
 
 	@media (min-width: 640px) {
